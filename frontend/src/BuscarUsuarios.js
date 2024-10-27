@@ -84,7 +84,7 @@ const BuscarUsuario = () => {
                     <input
                         type="date"
                         name="birthdate"
-                        value={editingUser.birthdate.slice(0, 10)}
+                        value={editingUser.birthdate}
                         onChange={handleChange}
                     />
                     <select
