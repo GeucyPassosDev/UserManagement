@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import moment from 'moment';
 import axios from 'axios';
 import { FaEdit, FaTrash } from 'react-icons/fa'; // Importação dos ícones de edição e exclusão
 import './BuscarUsuarios.css';
@@ -58,7 +59,7 @@ const BuscarUsuario = () => {
                         <tr key={user.id}>
                             <td>{user.name}</td>
                             <td>{user.email}</td>
-                            <td>{new Date(user.birthdate).toLocaleDateString('pt-BR')}</td>
+                            <td>{moment(user.birthdate).format('DD/MM/YYYY')}</td>
                             <td>{user.status}</td>
                             <td>
                                 <FaEdit onClick={() => handleEdit(user)} style={{ cursor: 'pointer', color: '#007bff' }} />
