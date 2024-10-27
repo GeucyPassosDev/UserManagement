@@ -20,10 +20,9 @@ const CadastroUsuario = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
     
-        // Use o valor diretamente, garantindo que ele seja no formato 'YYYY-MM-DD'
         const formDataToSend = {
             ...formData,
-            birthdate: formData.birthdate // Mantém o valor que o usuário digitou
+            birthdate: formData.birthdate
         };
     
         // Enviar dados para a API

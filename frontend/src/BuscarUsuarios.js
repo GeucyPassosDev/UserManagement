@@ -3,14 +3,6 @@ import axios from 'axios';
 import { FaEdit, FaTrash } from 'react-icons/fa'; 
 import './BuscarUsuarios.css';
 
-const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    const day = String(date.getDate()).padStart(2, '0'); // Adiciona zero à esquerda
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Mês começa do zero
-    const year = date.getFullYear();
-    return `${day}/${month}/${year}`; // Formato DD/MM/YYYY
-};
-
 const BuscarUsuario = () => {
     const [users, setUsers] = useState([]);
     const [editingUser, setEditingUser] = useState(null);
@@ -45,6 +37,13 @@ const BuscarUsuario = () => {
         setEditingUser({ ...editingUser, [e.target.name]: e.target.value });
     };
 
+    const ajustaData = (data) => {
+        const dataUTC = new Date(data);
+        const timezoneOffset = dataUTC.getTimezoneOffset() * 60000;
+        const dataLocal = new Date(dataUTC.getTime() + timezoneOffset);
+        return dataLocal;
+    };
+
     return (
         <div className="search-container">
             <h2>Usuários Cadastrados</h2>
@@ -63,7 +62,7 @@ const BuscarUsuario = () => {
                         <tr key={user.id}>
                             <td>{user.name}</td>
                             <td>{user.email}</td>
-                            <td>{formatDate(user.birthdate)}</td> {/* Formatação da data sem Moment.js */}
+                            <td>{ajustaData(user.birthdate).toLocaleDateString('pt-BR')}</td>
                             <td>{user.status}</td>
                             <td>
                                 <FaEdit onClick={() => handleEdit(user)} style={{ cursor: 'pointer', color: '#007bff' }} />
