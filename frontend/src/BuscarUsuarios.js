@@ -5,6 +5,7 @@ import './BuscarUsuarios.css';
 const BuscarUsuario = () => {
     const [users, setUsers] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
+    const [searchedName, setSearchedName] = useState(''); // Estado para armazenar o nome buscado
 
     useEffect(() => {
         fetchUsers();
@@ -21,9 +22,10 @@ const BuscarUsuario = () => {
     };
 
     const handleSearch = () => {
-        axios.get(`http://localhost:3001/users?name=${searchTerm}`)
+        axios.get(`http://localhost:3000/users?name=${searchTerm.toLowerCase()}`)
             .then(response => {
                 setUsers(response.data);
+                setSearchedName(searchTerm); // Atualiza o nome buscado
             })
             .catch(error => {
                 console.error('Erro ao buscar usuários:', error);
@@ -40,6 +42,9 @@ const BuscarUsuario = () => {
                 onChange={(e) => setSearchTerm(e.target.value)}
             />
             <button onClick={handleSearch}>Buscar</button>
+
+            {/* Exibir o nome buscado, se existir */}
+            {searchedName && <h3>Resultados para: {searchedName}</h3>}
 
             <table>
                 <thead>
