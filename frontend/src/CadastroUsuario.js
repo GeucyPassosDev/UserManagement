@@ -19,6 +19,12 @@ const CadastroUsuario = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        // Converte a data para o formato correto antes de enviar
+        const formDataToSend = {
+        ...formData,
+        birthdate: new Date(formData.birthdate).toISOString().split("T")[0] // Configura a data para 'YYYY-MM-DD'
+        };
         
         // Enviar dados para a API
         axios.post('http://localhost:3000/users', formData, {
