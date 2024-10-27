@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_DB: user_management_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Gdev@98
+    ports:
+      - '5432:5432'
+  
+  backend:
+    build:
+      context: ./backend  # ou o caminho correto do seu backend
+      dockerfile: Dockerfile  # se o Dockerfile do backend estiver nomeado como Dockerfile
+    ports:
+      - '3000:3000'
+    environment:
+      DB_HOST: db
+      DB_NAME: user_management_db
+      DB_USER: postgres
+      DB_PASSWORD: Gdev@98
+    depends_on:
+      - db
+  
+  frontend:
+    build:
+      context: ./frontend  # ou o caminho correto do seu frontend
+      dockerfile: Dockerfile  # se o Dockerfile do frontend estiver nomeado como Dockerfile
+    ports:
+      - '3001:3001'

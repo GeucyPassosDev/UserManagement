@@ -1,0 +1,43 @@
+/* Estilo geral primeira tela "Sistema de Gerenciamento de Usuários" */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #fff;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  background-color: #fff;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.options-container {
+  display: flex;
+  gap: 20px;
+}
+
+.option-button {
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.option-button:hover {
+  background-color: #0056b3;
+}

@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "Gdev@98",
+    "database": "user_management_db",
+    "host": "db",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "postgres",
+    "password": "Gdev@98",
+    "database": "user_management_db_test",
+    "host": "db",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "postgres",
+    "password": "Gdev@98",
+    "database": "user_management_db",
+    "host": "db",
+    "dialect": "postgres"
+  }
+}
