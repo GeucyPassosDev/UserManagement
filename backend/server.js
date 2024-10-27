@@ -16,11 +16,6 @@ app.use(bodyParser.json());
 
 app.use('/users', userRoutes)
 
-app.get('/', (req, res) => {
-    res.send('API de Gerenciamento de Usuários - Endpoint disponível em /users');
-});
-
-
 const sequelize = new Sequelize(
     'user_management_db',
     'postgres',
