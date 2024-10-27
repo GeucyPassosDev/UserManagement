@@ -77,5 +77,3 @@ UserManagement/
  .env
  package.json
 
-Contribuição
-
