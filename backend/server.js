@@ -7,14 +7,18 @@ const { Sequelize } = require('sequelize');
 
 const app = express();
 app.use(cors({
-    origin: 'http://localhost:3001', 
+    origin: 'http://localhost:3000', 
     methods: ['GET', 'POST', 'PUT', 'DELETE'], 
     allowedHeaders: ['Content-Type']
 }));
 
 app.use(bodyParser.json());
 
-app.use('/users', userRoutes);
+/*app.use('/users', userRoutes);*/
+app.get('/', (req, res) => {
+    res.send('API de Gerenciamento de Usuários - Endpoint disponível em /users');
+});
+
 
 const sequelize = new Sequelize(
     'user_management_db',
