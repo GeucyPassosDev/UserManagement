@@ -27,7 +27,7 @@ const CadastroUsuario = () => {
         };
         
         // Enviar dados para a API
-        axios.post('http://localhost:3000/users', formData, {
+        axios.post('http://localhost:3000/users', formDataToSend, {
             headers: {
                 'Content-Type': 'application/json' // Definindo o cabeçalho
             }
