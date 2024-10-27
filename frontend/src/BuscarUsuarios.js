@@ -25,13 +25,16 @@ const BuscarUsuario = () => {
     };
 
     const handleSaveEdit = () => {
-        axios.put(`http://localhost:3000/users/${editingUser.id}`, editingUser)
-            .then(() => {
-                fetchUsers();
-                setEditingUser(null);
-            })
-            .catch(error => console.error('Erro ao editar usuário:', error));
-    };
+        axios.put(`http://localhost:3000/users/${editingUser.id}`, {
+            ...editingUser,
+            birthdate: editingUser.birthdate // Mantenha o valor direto
+        })
+        .then(() => {
+            fetchUsers();
+            setEditingUser(null);
+        })
+        .catch(error => console.error('Erro ao editar usuário:', error));
+    };    
 
     const handleChange = (e) => {
         setEditingUser({ ...editingUser, [e.target.name]: e.target.value });

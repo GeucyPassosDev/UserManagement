@@ -32,20 +32,20 @@ const CadastroUsuario = () => {
                 'Content-Type': 'application/json' // Definindo o cabeçalho
             }
         })
-            .then(() => {
-                alert('Usuário cadastrado com sucesso!');
-                setFormData({
-                    name: '',
-                    email: '',
-                    birthdate: '',
-                    status: 'ativo' // Resetando para 'ativo'
-                });
-            })
-            .catch(error => {
-                console.error('Erro ao cadastrar usuário:', error);
-                alert('Erro ao cadastrar o usuário: ' + (error.response?.data?.message || ''));
+        .then(() => {
+            alert('Usuário cadastrado com sucesso!');
+            setFormData({
+                name: '',
+                email: '',
+                birthdate: '',
+                status: 'ativo' // Resetando para 'ativo'
             });
-    };
+        })
+        .catch(error => {
+            console.error('Erro ao cadastrar usuário:', error);
+            alert('Erro ao cadastrar o usuário: ' + (error.response?.data?.message || ''));
+        });
+    };    
     
     return (
         <div className="form-container">
