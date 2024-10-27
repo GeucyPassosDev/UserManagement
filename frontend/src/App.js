@@ -17,7 +17,7 @@ const App = () => {
                     Cadastrar Novo Usuário
                 </button>
                 <button className="option-button" onClick={() => handleNavigate('/buscar')}>
-                    Buscar Usuário
+                    Buscar Usuário Cadastrados
                 </button>
             </div>
         </div>
