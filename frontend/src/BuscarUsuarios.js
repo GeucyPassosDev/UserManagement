@@ -5,7 +5,6 @@ import './BuscarUsuarios.css';
 const BuscarUsuario = () => {
     const [users, setUsers] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
-    const [searchedName, setSearchedName] = useState(''); // Estado para armazenar o nome buscado
 
     useEffect(() => {
         fetchUsers();
@@ -22,14 +21,11 @@ const BuscarUsuario = () => {
     };
 
     const handleSearch = () => {
-        axios.get(`http://localhost:3000/users?name=${searchTerm.toLowerCase()}`)
-            .then(response => {
-                setUsers(response.data);
-                setSearchedName(searchTerm); // Atualiza o nome buscado
-            })
-            .catch(error => {
-                console.error('Erro ao buscar usuários:', error);
-            });
+        const filteredUsers = users.filter(user =>
+            user.name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+
+        setUsers(filteredUsers);
     };
 
     return (
@@ -43,9 +39,7 @@ const BuscarUsuario = () => {
             />
             <button onClick={handleSearch}>Buscar</button>
 
-            {/* Exibir o nome buscado, se existir */}
-            {searchedName && <h3>Resultados para: {searchedName}</h3>}
-
+            <h3>Resultados da Busca:</h3>
             <table>
                 <thead>
                     <tr>
@@ -60,7 +54,7 @@ const BuscarUsuario = () => {
                         <tr key={user.id}>
                             <td>{user.name}</td>
                             <td>{user.email}</td>
-                            <td>{new Date(user.birthdate).toLocaleDateString('pt-BR')}</td> {/* Formatação da data */}
+                            <td>{new Date(user.birthdate).toLocaleDateString('pt-BR')}</td>
                             <td>{user.status}</td>
                         </tr>
                     ))}
