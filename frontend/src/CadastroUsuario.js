@@ -19,19 +19,13 @@ const CadastroUsuario = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        // Cria uma nova data baseada na data de nascimento
-        const birthdate = new Date(formData.birthdate);
-
-        // Ajusta para o horário local (UTC-3, por exemplo, para Brasília)
-        birthdate.setHours(birthdate.getHours() + birthdate.getTimezoneOffset() / 60);
-
-        // Converte a data para o formato correto antes de enviar
+    
+        // Use o valor diretamente, garantindo que ele seja no formato 'YYYY-MM-DD'
         const formDataToSend = {
-        ...formData,
-        birthdate: new Date(formData.birthdate).toISOString().split("T")[0] // Configura a data para 'YYYY-MM-DD'
+            ...formData,
+            birthdate: formData.birthdate // Mantém o valor que o usuário digitou
         };
-        
+    
         // Enviar dados para a API
         axios.post('http://localhost:3000/users', formDataToSend, {
             headers: {
@@ -52,7 +46,7 @@ const CadastroUsuario = () => {
                 alert('Erro ao cadastrar o usuário: ' + (error.response?.data?.message || ''));
             });
     };
-
+    
     return (
         <div className="form-container">
             <h2>Cadastrar Novo Usuário</h2>
