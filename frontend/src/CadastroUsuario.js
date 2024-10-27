@@ -20,6 +20,12 @@ const CadastroUsuario = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        // Cria uma nova data baseada na data de nascimento
+        const birthdate = new Date(formData.birthdate);
+
+        // Ajusta para o horário local (UTC-3, por exemplo, para Brasília)
+        birthdate.setHours(birthdate.getHours() + birthdate.getTimezoneOffset() / 60);
+
         // Converte a data para o formato correto antes de enviar
         const formDataToSend = {
         ...formData,
