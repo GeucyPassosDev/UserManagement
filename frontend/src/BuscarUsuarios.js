@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaEdit, FaTrash } from 'react-icons/fa'; 
-import moment from 'moment'; // Importar moment
 import './BuscarUsuarios.css';
+
+const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0'); // Adiciona zero à esquerda
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Mês começa do zero
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`; // Formato DD/MM/YYYY
+};
 
 const BuscarUsuario = () => {
     const [users, setUsers] = useState([]);
@@ -56,7 +63,7 @@ const BuscarUsuario = () => {
                         <tr key={user.id}>
                             <td>{user.name}</td>
                             <td>{user.email}</td>
-                            <td>{moment(user.birthdate).format('DD/MM/YYYY')}</td> {/* Modificado */}
+                            <td>{formatDate(user.birthdate)}</td> {/* Formatação da data sem Moment.js */}
                             <td>{user.status}</td>
                             <td>
                                 <FaEdit onClick={() => handleEdit(user)} style={{ cursor: 'pointer', color: '#007bff' }} />

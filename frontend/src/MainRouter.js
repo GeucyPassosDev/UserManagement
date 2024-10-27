@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import App from './App'; // Importa seu componente App
-import CadastroUsuario from './CadastroUsuario'; // Importa o componente de cadastro
-import BuscarUsuario from './BuscarUsuarios'; // Importa o componente de busca
+import App from './App'; 
+import CadastroUsuario from './CadastroUsuario'; 
+import BuscarUsuario from './BuscarUsuarios'; 
 
 const MainRouter = () => {
     return (
