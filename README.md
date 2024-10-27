@@ -48,8 +48,7 @@ npm install
 3.cd ../frontend
 npm install
 
-4.cd ..
-docker-compose up --build
+4.docker-compose up --build
 
 Sobre o uso da aplicação
 
