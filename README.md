@@ -8,10 +8,8 @@ Table of Contents
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
 - [Pré-requisitos](#pré-requisitos)
 - [Instalação](#instalação)
-- [Uso](#uso)
-- [Estrutura do Projeto](#estrutura-do-projeto)
-- [Contribuição](#contribuição)
-- [Licença](#licença)
+- [Sobre o uso da aplicação](#sobre-o-uso-da-aplicação)
+- [Estrutura da aplicação](#strutura-da-aplicação)
 
 Funcionalidades
 
