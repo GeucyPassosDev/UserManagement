@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FaEdit, FaTrash } from 'react-icons/fa'; // Importe os ícones que você deseja usar
+import { FaEdit, FaTrash } from 'react-icons/fa';
 import './BuscarUsuarios.css';
 
 const BuscarUsuario = () => {
     const [users, setUsers] = useState([]);
+    const [editingUser, setEditingUser] = useState(null); // Estado para controlar o usuário que está sendo editado
 
     useEffect(() => {
         fetchUsers();
@@ -20,21 +21,33 @@ const BuscarUsuario = () => {
             });
     };
 
-    const handleEdit = (userId) => {
-        // Lógica para edição do usuário
-        console.log(`Editando usuário com ID: ${userId}`);
-        // Você pode redirecionar para uma página de edição ou abrir um modal aqui
+    const handleEdit = (user) => {
+        setEditingUser(user); // Define o usuário que será editado
     };
 
     const handleDelete = (userId) => {
         axios.delete(`http://localhost:3000/users/${userId}`)
             .then(() => {
-                // Remover o usuário da lista após a exclusão
                 setUsers(users.filter(user => user.id !== userId));
             })
             .catch(error => {
                 console.error('Erro ao excluir usuário:', error);
             });
+    };
+
+    const handleSaveEdit = () => {
+        axios.put(`http://localhost:3000/users/${editingUser.id}`, editingUser)
+            .then(() => {
+                fetchUsers(); // Atualiza a lista de usuários
+                setEditingUser(null); // Limpa o estado de edição
+            })
+            .catch(error => {
+                console.error('Erro ao editar usuário:', error);
+            });
+    };
+
+    const handleChange = (e) => {
+        setEditingUser({ ...editingUser, [e.target.name]: e.target.value }); // Atualiza o estado do usuário sendo editado
     };
 
     return (
@@ -47,7 +60,7 @@ const BuscarUsuario = () => {
                         <th>Email</th>
                         <th>Data Nascimento</th>
                         <th>Status</th>
-                        <th>Ações</th> {/* Coluna para ações */}
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,7 +72,7 @@ const BuscarUsuario = () => {
                             <td>{user.status}</td>
                             <td>
                                 <FaEdit 
-                                    onClick={() => handleEdit(user.id)} 
+                                    onClick={() => handleEdit(user)} 
                                     style={{ cursor: 'pointer', marginRight: '10px' }} 
                                 />
                                 <FaTrash 
@@ -71,6 +84,41 @@ const BuscarUsuario = () => {
                     ))}
                 </tbody>
             </table>
+
+            {/* Modal de Edição */}
+            {editingUser && (
+                <div className="modal">
+                    <h3>Editar Usuário</h3>
+                    <input
+                        type="text"
+                        name="name"
+                        value={editingUser.name}
+                        onChange={handleChange}
+                    />
+                    <input
+                        type="email"
+                        name="email"
+                        value={editingUser.email}
+                        onChange={handleChange}
+                    />
+                    <input
+                        type="date"
+                        name="birthdate"
+                        value={editingUser.birthdate.slice(0, 10)} // Formata a data para o input
+                        onChange={handleChange}
+                    />
+                    <select
+                        name="status"
+                        value={editingUser.status}
+                        onChange={handleChange}
+                    >
+                        <option value="ativo">Ativo</option>
+                        <option value="inativo">Inativo</option>
+                    </select>
+                    <button onClick={handleSaveEdit}>Salvar</button>
+                    <button onClick={() => setEditingUser(null)}>Cancelar</button>
+                </div>
+            )}
         </div>
     );
 };
