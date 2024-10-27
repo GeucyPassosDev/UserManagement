@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FaEdit, FaTrash } from 'react-icons/fa'; // Importação dos ícones de edição e exclusão
+import { FaEdit, FaTrash } from 'react-icons/fa'; 
+import moment from 'moment'; // Importar moment
 import './BuscarUsuarios.css';
 
 const BuscarUsuario = () => {
@@ -25,16 +26,13 @@ const BuscarUsuario = () => {
     };
 
     const handleSaveEdit = () => {
-        axios.put(`http://localhost:3000/users/${editingUser.id}`, {
-            ...editingUser,
-            birthdate: editingUser.birthdate // Mantenha o valor direto
-        })
-        .then(() => {
-            fetchUsers();
-            setEditingUser(null);
-        })
-        .catch(error => console.error('Erro ao editar usuário:', error));
-    };    
+        axios.put(`http://localhost:3000/users/${editingUser.id}`, editingUser)
+            .then(() => {
+                fetchUsers();
+                setEditingUser(null);
+            })
+            .catch(error => console.error('Erro ao editar usuário:', error));
+    };
 
     const handleChange = (e) => {
         setEditingUser({ ...editingUser, [e.target.name]: e.target.value });
@@ -58,7 +56,7 @@ const BuscarUsuario = () => {
                         <tr key={user.id}>
                             <td>{user.name}</td>
                             <td>{user.email}</td>
-                            <td>{(user.birthdate).format('DD/MM/YYYY')}</td>
+                            <td>{moment(user.birthdate).format('DD/MM/YYYY')}</td> {/* Modificado */}
                             <td>{user.status}</td>
                             <td>
                                 <FaEdit onClick={() => handleEdit(user)} style={{ cursor: 'pointer', color: '#007bff' }} />
