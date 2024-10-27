@@ -10,27 +10,6 @@ h2 {
     margin-bottom: 20px;
 }
 
-input {
-    padding: 10px;
-    font-size: 1rem;
-    width: 250px;
-    margin-bottom: 20px;
-}
-
-button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
 table {
     width: 80%;
     margin-top: 20px;
@@ -46,4 +25,36 @@ th, td {
 th {
     background-color: #f4f7fc;
     font-weight: bold;
+}
+
+/* Estilo para a coluna de ações */
+td {
+    display: flex;
+    align-items: center; /* Alinha ícones no centro da célula */
+}
+
+td svg {
+    margin-right: 10px; /* Espaço entre os ícones */
+    cursor: pointer; /* Cursor em forma de ponteiro ao passar o mouse */
+    transition: color 0.3s; /* Animação suave para a cor */
+}
+
+/* Efeito ao passar o mouse sobre os ícones */
+td svg:hover {
+    color: #007bff; /* Altera a cor ao passar o mouse */
+}
+
+/* Se preferir um botão personalizado para os ícones */
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
 }

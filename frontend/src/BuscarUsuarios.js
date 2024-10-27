@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { FaEdit, FaTrash } from 'react-icons/fa'; // Importe os ícones que você deseja usar
 import './BuscarUsuarios.css';
 
 const BuscarUsuario = () => {
     const [users, setUsers] = useState([]);
-    const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
         fetchUsers();
@@ -20,26 +20,26 @@ const BuscarUsuario = () => {
             });
     };
 
-    const handleSearch = () => {
-        const filteredUsers = users.filter(user =>
-            user.name.toLowerCase().includes(searchTerm.toLowerCase())
-        );
+    const handleEdit = (userId) => {
+        // Lógica para edição do usuário
+        console.log(`Editando usuário com ID: ${userId}`);
+        // Você pode redirecionar para uma página de edição ou abrir um modal aqui
+    };
 
-        setUsers(filteredUsers);
+    const handleDelete = (userId) => {
+        axios.delete(`http://localhost:3000/users/${userId}`)
+            .then(() => {
+                // Remover o usuário da lista após a exclusão
+                setUsers(users.filter(user => user.id !== userId));
+            })
+            .catch(error => {
+                console.error('Erro ao excluir usuário:', error);
+            });
     };
 
     return (
         <div className="search-container">
-            <h2>Buscar Usuário</h2>
-            <input
-                type="text"
-                placeholder="Buscar por nome"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <button onClick={handleSearch}>Buscar</button>
-
-            <h3>Resultados da Busca:</h3>
+            <h2>Usuários Cadastrados</h2>
             <table>
                 <thead>
                     <tr>
@@ -47,6 +47,7 @@ const BuscarUsuario = () => {
                         <th>Email</th>
                         <th>Data Nascimento</th>
                         <th>Status</th>
+                        <th>Ações</th> {/* Coluna para ações */}
                     </tr>
                 </thead>
                 <tbody>
@@ -56,6 +57,16 @@ const BuscarUsuario = () => {
                             <td>{user.email}</td>
                             <td>{new Date(user.birthdate).toLocaleDateString('pt-BR')}</td>
                             <td>{user.status}</td>
+                            <td>
+                                <FaEdit 
+                                    onClick={() => handleEdit(user.id)} 
+                                    style={{ cursor: 'pointer', marginRight: '10px' }} 
+                                />
+                                <FaTrash 
+                                    onClick={() => handleDelete(user.id)} 
+                                    style={{ cursor: 'pointer', color: 'red' }} 
+                                />
+                            </td>
                         </tr>
                     ))}
                 </tbody>
