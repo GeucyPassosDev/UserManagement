@@ -9,10 +9,12 @@
 h2 {
     font-size: 2rem;
     margin-bottom: 20px;
+    text-align: center;
+    width: 100%;
 }
 
 table {
-    width: 80%;
+    width: 90%; /* Aumenta a largura da tabela */
     margin-top: 20px;
     border-collapse: collapse;
 }
@@ -21,6 +23,7 @@ th, td {
     padding: 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+    white-space: nowrap; /* Garante que o texto não quebre para a próxima linha */
 }
 
 th {
@@ -28,72 +31,43 @@ th {
     font-weight: bold;
 }
 
-td {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 15px; /* Espaçamento entre o conteúdo e os ícones */
+/* Ajuste para exibir todas as informações do usuário em uma linha */
+tbody tr {
+    display: table-row; /* Define como uma linha de tabela */
 }
 
-/* Estilo para a coluna de ações */
+tbody tr td {
+    display: table-cell; /* Define cada célula na mesma linha */
+    padding: 10px 20px; /* Adiciona espaçamento entre as células */
+}
+
+/* Flexibilidade nas colunas */
+tbody tr td:nth-child(1) { /* Nome */
+    width: 20%; /* Ajuste de largura */
+}
+
+tbody tr td:nth-child(2) { /* Email */
+    width: 30%;
+}
+
+tbody tr td:nth-child(3), /* Data de Nascimento */
+tbody tr td:nth-child(4) { /* Status */
+    width: 15%;
+}
+
+tbody tr td:nth-child(5) { /* Ações */
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly; /* Espaço uniforme entre os ícones */
+}
+
+/* Estilo para os ícones de ação */
 td svg {
-    margin-right: 10px; /* Espaço entre os ícones */
     cursor: pointer;
     transition: color 0.3s;
 }
 
 td svg:hover {
     color: #007bff;
-}
-
-/* Estilo para o modal */
-.modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    border: 1px solid #ddd;
-    padding: 25px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    max-width: 500px; /* Limita a largura do modal */
-    width: 100%;
-    border-radius: 8px; /* Deixa os cantos arredondados */
-}
-
-/* Estilo para os inputs dentro do modal */
-.modal input, .modal select {
-    display: block;
-    margin-bottom: 15px;
-    padding: 12px;
-    width: 100%;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem; /* Fonte maior para melhor legibilidade */
-}
-
-/* Estilo para os botões dentro do modal */
-.modal button {
-    padding: 10px 20px;
-    margin-right: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.modal button:hover {
-    background-color: #0056b3;
-}
-
-/* Adiciona espaçamento entre as células da tabela */
-table tbody tr {
-    margin-top: 10px;
-}
-
-/* Adiciona um espaçamento geral entre cada linha da tabela */
-tbody tr {
-    padding: 10px 0;
 }
