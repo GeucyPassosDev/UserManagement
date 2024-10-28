@@ -1,4 +1,4 @@
-User Management System
+"User Management System"
 
 Sistema de gerenciamento de usuários desenvolvido com Node.js, Express, Sequelize e PostgreSQL, que permite cadastrar, listar, atualizar e excluir usuários. A aplicação está containerizada usando Docker para facilitar o desenvolvimento e a implementação.
 
@@ -15,7 +15,6 @@ Funcionalidades
 
 - Cadastrar novos usuários
 - Listar todos os usuários
-- Obter detalhes de um usuário específico
 - Atualizar informações de um usuário
 - Excluir usuários
 
@@ -35,20 +34,23 @@ Antes de começar, você precisará ter o seguinte instalado em sua máquina:
 - [Docker](https://www.docker.com/get-started)
 - [Docker Compose](https://docs.docker.com/compose/install/)
 
-## Instalação
+Instalação
 
 1. Clone o repositório:
+   pelo github: acesse o link que direciona ao projeto:
+   link:https://github.com/GeucyPassosDev/UserManagement
+   Clique em "<> Code", e copie o link de clone do projeto.
+   
+2.No VScode abra a paleta de comandos com a combinação de teclas Ctrl + Shift + P. No prompt da paleta de comandos, digite gitcl , selecione o comando Git: Clone e, em seguida, selecione Clone do GitHub e pressione Enter. Quando for solicitada a URL do Repositório, selecione Clonar do GitHub e pressione Enter
 
-   ```bash
-   git clone https://github.com/GeucyPassosDev/UserManagement.git
-   cd UserManagement
-2. cd backend
+3. Abra um prompt no VScode direcione até a raiz do projeto e digite cd backend para acessas o backend, em seguidas digite:
 npm install
 
-3.cd ../frontend
+4.Abra um prompt no VScode direcione até a raiz do projeto e digite cd frontend para acessas o backend, em seguidas digite:
 npm install
 
-4.docker-compose up --build
+5.Clique com o botão direito do mouse no arquivo docker-compose.yml e abra o arquivo em um prompt de comando, em seguida digite no prompt:
+docker-compose up --build
 
 Sobre o uso da aplicação
 
@@ -58,21 +60,33 @@ Para cadastrar um novo usuário, preencha o formulário no frontend e clique em 
 
 Estrutura da Aplicação
 
-UserManagement/
+Raiz - USER_MANAGER_PT
+── backend
+   ── config
+   ── migrations
+   ── models
+   ── node_modules
+   ── routes
+   ── seeders
+   ── Dockerfile
+   ── package-lock.json
+   ── package.json
+   ── server.js
+   ── wait-for-it.sh
+── frontend
+   ── build
+   ── node_modules
+   ── public
+   ── src
+   ── .gitignore
+   ── Dockerfile
+   ── package-lock.json
+   ── package.json
+── node_modules
+── .env
+── docker-compose.yml
+── package-lock.json
+── package.json
+── README.md
 
- backend/
-   ├── config/
-   ├── models/
-   ├── routes/
-   ├── Dockerfile
-   ├── package.json
-   └── server.js
- frontend/
-   ├── public/
-   ├── src/
-   ├── Dockerfile
-   └── package.json
- docker-compose.yml
- .env
- package.json
 
