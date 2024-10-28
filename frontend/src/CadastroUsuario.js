@@ -7,7 +7,7 @@ const CadastroUsuario = () => {
         name: '',
         email: '',
         birthdate: '',
-        status: 'ativo' // Mudamos para 'ativo'
+        status: 'ativo'
     });
 
     const handleChange = (e) => {
@@ -28,7 +28,7 @@ const CadastroUsuario = () => {
         // Enviar dados para a API
         axios.post('http://localhost:3000/users', formDataToSend, {
             headers: {
-                'Content-Type': 'application/json' // Definindo o cabeçalho
+                'Content-Type': 'application/json'
             }
         })
         .then(() => {
@@ -37,7 +37,7 @@ const CadastroUsuario = () => {
                 name: '',
                 email: '',
                 birthdate: '',
-                status: 'ativo' // Resetando para 'ativo'
+                status: 'ativo'
             });
         })
         .catch(error => {
@@ -82,8 +82,8 @@ const CadastroUsuario = () => {
 
                 <label htmlFor="status">Status:</label>
                 <select name="status" id="status" value={formData.status} onChange={handleChange}>
-                    <option value="ativo">Ativo</option> {/* Muda para 'ativo' */}
-                    <option value="inativo">Inativo</option> {/* Muda para 'inativo' */}
+                    <option value="ativo">Ativo</option> 
+                    <option value="inativo">Inativo</option>
                 </select>
 
                 <button type="submit">Cadastrar</button>
