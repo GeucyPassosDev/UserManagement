@@ -1,7 +1,5 @@
-# Dockerfile para o backend
 FROM node:18
 
-# Define o diretório de trabalho
 WORKDIR /app
 
 # Copia o wait-for-it.sh e torna-o executável

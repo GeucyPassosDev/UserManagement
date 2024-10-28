@@ -21,7 +21,7 @@ const sequelize = new Sequelize(
     'postgres',
     'Gdev@98',
     {
-        host: 'db', // Alterado para o nome do serviço do banco de dados no Docker
+        host: 'db',
         dialect: 'postgres',
     }
 );

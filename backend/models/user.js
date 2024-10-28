@@ -34,7 +34,6 @@ const User = sequelize.define('User', {
     },
 });
 
-// Sincronizar o modelo com o banco de dados (opcional, mas pode ser feito aqui ou no server.js)
 User.sync({ alter: true });
 
 module.exports = User;
