@@ -11,8 +11,8 @@ services:
   
   backend:
     build:
-      context: ./backend  # ou o caminho correto do seu backend
-      dockerfile: Dockerfile  # se o Dockerfile do backend estiver nomeado como Dockerfile
+      context: ./backend  
+      dockerfile: Dockerfile  
     ports:
       - '3000:3000'
     environment:
@@ -25,7 +25,7 @@ services:
   
   frontend:
     build:
-      context: ./frontend  # ou o caminho correto do seu frontend
-      dockerfile: Dockerfile  # se o Dockerfile do frontend estiver nomeado como Dockerfile
+      context: ./frontend  
+      dockerfile: Dockerfile 
     ports:
       - '3001:3001'
